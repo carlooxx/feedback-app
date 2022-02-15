@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useState} from 'react'
 import Card from './shared/Card'
 import { FaTimes } from 'react-icons/fa'
+import FeedbackContext from '../context/FeedbackContext';
 
-function FeedbackItem({item, handleDelete}) {
+function FeedbackItem({item}) {
+  const {handleDelete} = useContext(FeedbackContext)
   return (
     <Card reverse={true}>
         <div className="num-display">{item.rating}</div>
