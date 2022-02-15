@@ -22,8 +22,8 @@ function Home() {
   return (
     <>
       <FeedbackForm handleAdd={addFeedback}/>
-      <Feedbackstats feedback={feedback} />
-      <FeedbackList feedback={feedback} handleDelete={handleDelete}/>
+      <Feedbackstats />
+      <FeedbackList handleDelete={handleDelete}/>
       <AboutIconLink />
     </>
   )
