@@ -43,7 +43,7 @@ const editFeedback = item => {
 }
 
     return (
-        <FeedbackContext.Provider value={{feedback, handleDelete, addFeedback, editFeedback}}>
+        <FeedbackContext.Provider value={{feedback, handleDelete, addFeedback, editFeedback, feedbackEdit}}>
             {children}
         </FeedbackContext.Provider>
     )
