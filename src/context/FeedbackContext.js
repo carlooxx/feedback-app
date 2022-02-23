@@ -1,28 +1,26 @@
-import React, {useState, createContext} from "react";
+import React, {useState, createContext, useEffect} from "react";
 import {v4 as uuidv4} from 'uuid'
+import axios from "axios";
 
 
 const FeedbackContext = createContext()
 
 export const FeedbackProvider = ({children}) => {
-const[feedback, setFeedback] = useState([
-    {
-        id: 1,
-        text: 'This item is from context 1',
-        rating: 1
-    },
-    {
-        id: 2,
-        text: 'This item is from context 2',
-        rating: 4
-    },
-    {
-        id: 3,
-        text: 'This item is from context 3',
-        rating: 10
-    },
-])
+const[feedback, setFeedback] = useState([])
 const[feedbackEdit, setFeedbackEdit] = useState({item: {}, edit: false})
+
+useEffect(() => {
+    fetchFeedback()
+},[])
+
+//fetch feedback
+const fetchFeedback = async () => {
+    const response = await axios.get("http://localhost:5000/feedback?_sort=id&_order=desc");
+    const data = await response.data;
+
+    setFeedback(data)
+}
+
 //delete feedback
 const handleDelete = (id) => { 
     if(window.confirm('Are you sure you want to delete?')) {
