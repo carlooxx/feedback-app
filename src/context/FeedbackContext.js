@@ -6,6 +6,7 @@ import axios from "axios";
 const FeedbackContext = createContext()
 
 export const FeedbackProvider = ({children}) => {
+    const[isLoading, setIsLoading] = useState(true)
 const[feedback, setFeedback] = useState([])
 const[feedbackEdit, setFeedbackEdit] = useState({item: {}, edit: false})
 
@@ -19,6 +20,7 @@ const fetchFeedback = async () => {
     const data = await response.data;
 
     setFeedback(data)
+    setIsLoading(false)
 }
 
 //delete feedback
@@ -46,7 +48,7 @@ const updateFeedback = (id, updatedItem) => {
 }
 
     return (
-        <FeedbackContext.Provider value={{feedback, handleDelete, addFeedback, editFeedback, feedbackEdit, updateFeedback}}>
+        <FeedbackContext.Provider value={{feedback, handleDelete, addFeedback, editFeedback, feedbackEdit, updateFeedback, isLoading}}>
             {children}
         </FeedbackContext.Provider>
     )
