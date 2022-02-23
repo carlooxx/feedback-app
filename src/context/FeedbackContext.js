@@ -23,8 +23,9 @@ const fetchFeedback = async () => {
 }
 
 //delete feedback
-const handleDelete = (id) => { 
+const handleDelete = async (id) => { 
     if(window.confirm('Are you sure you want to delete?')) {
+        await axios.delete(`/feedback/${id}`)
         setFeedback(feedback.filter((item) => item.id !== id))
     }
 }
@@ -41,9 +42,11 @@ const editFeedback = item => {
         edit: true
     })
 }
-const updateFeedback = (id, updatedItem) => {
+const updateFeedback = async (id, updatedItem) => {
+    const response = await axios.put(`/feedback/${id}`, updatedItem)
+    const data = await response.data;
     setFeedback(
-        feedback.map((item) => (item.id === id ? {...item, ...updatedItem} : item))
+        feedback.map((item) => (item.id === id ? {...item, ...data} : item))
     )
 }
 
