@@ -1,5 +1,4 @@
 import React, {useState, createContext, useEffect} from "react";
-import {v4 as uuidv4} from 'uuid'
 import axios from "axios";
 
 
@@ -16,7 +15,7 @@ useEffect(() => {
 
 //fetch feedback
 const fetchFeedback = async () => {
-    const response = await axios.get("http://localhost:5000/feedback?_sort=id&_order=desc");
+    const response = await axios.get("/feedback?_sort=id&_order=desc");
     const data = await response.data;
 
     setFeedback(data)
@@ -30,9 +29,10 @@ const handleDelete = (id) => {
     }
 }
 //add feedback
-const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-    setFeedback([newFeedback, ...feedback])
+const addFeedback = async (newFeedback) => {
+    const response = await axios.post('/feedback', newFeedback)
+    const data = await response.data
+    setFeedback([data, ...feedback])
 }
 //set item to be updated
 const editFeedback = item => {
