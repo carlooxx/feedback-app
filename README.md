@@ -18,4 +18,4 @@ This project goes over all of the fundamentals of React including...
 ---
 
 
-Check live demo without mock JSON server: https://feed-back-app.netlify.app/
+Check live demo without mock JSON server: [Link](https://feed-back-app.netlify.app/)
